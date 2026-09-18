@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nudge</title>
+<style>
+:root{--ink:#17211b;--muted:#66736b;--bg:#f4f7f4;--card:#fff;--green:#1f7a4d;--light:#e5f4eb;--line:#dce4de;--orange:#fff0dc}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--ink)}
+.app{max-width:760px;margin:auto;min-height:100vh;padding:24px 18px 92px}.top{display:flex;justify-content:space-between;align-items:center}.brand{font-size:28px;font-weight:850}.avatar{width:44px;height:44px;border-radius:50%;background:var(--green);color:white;display:grid;place-items:center;font-weight:800}
+.hello{margin:28px 0 16px}.hello h1{font-size:25px;margin:0 0 6px}.hello p{margin:0;color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat,.card,.panel{background:var(--card);border:1px solid var(--line);border-radius:18px}.stat{padding:15px}.stat b{font-size:25px;display:block}.stat span{font-size:12px;color:var(--muted)}
+.tabs{display:flex;gap:8px;margin:22px 0 14px}.tab{border:1px solid var(--line);background:white;border-radius:999px;padding:10px 15px;font-weight:700}.tab.active{background:var(--ink);color:white}
+.card{padding:16px;margin:10px 0}.row{display:flex;justify-content:space-between;gap:12px}.pill{font-size:11px;font-weight:800;background:var(--light);color:var(--green);padding:5px 9px;border-radius:999px;white-space:nowrap}.pill.ready{background:var(--orange);color:#a25a00}.card h3{margin:10px 0 4px;font-size:17px}.meta{font-size:13px;color:var(--muted)}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+button{font:inherit;cursor:pointer}.btn{border:1px solid var(--line);background:white;padding:10px 12px;border-radius:11px;font-weight:700}.primary{background:var(--green);color:white;border-color:var(--green)}
+.fab{position:fixed;bottom:76px;left:50%;transform:translateX(-50%);border:0;background:var(--green);color:#fff;border-radius:999px;padding:14px 22px;font-weight:850;box-shadow:0 8px 25px #0003}
+.nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);display:flex;justify-content:center}.navin{width:760px;display:grid;grid-template-columns:repeat(4,1fr)}.nav button{border:0;background:none;padding:13px 4px;color:var(--muted);font-size:12px}.nav button.active{color:var(--green);font-weight:800}
+.modal{position:fixed;inset:0;background:#0008;display:none;align-items:flex-end;justify-content:center;z-index:5}.modal.open{display:flex}.sheet{width:min(760px,100%);max-height:92vh;overflow:auto;background:white;border-radius:24px 24px 0 0;padding:22px}.sheet h2{margin-top:0}
+label{font-size:13px;font-weight:750;display:block;margin:13px 0 6px}input,textarea,select{width:100%;padding:13px;border:1px solid var(--line);border-radius:12px;font:inherit;background:white}textarea{min-height:80px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.sheetactions{display:flex;gap:10px;margin-top:20px}.sheetactions button{flex:1}
+.empty{text-align:center;color:var(--muted);padding:40px 10px}.activity{padding:14px 0;border-bottom:1px solid var(--line)}.activity:last-child{border:0}.profile{padding:22px;text-align:center}.profile .avatar{margin:auto;width:64px;height:64px;font-size:20px}.hide{display:none!important}
+@media(max-width:450px){.app{padding:18px 14px 92px}.stats{gap:6px}.stat{padding:12px 10px}.grid2{grid-template-columns:1fr}.hello h1{font-size:22px}}
+</style>
+</head>
+<body>
+<main class="app">
+<div class="top"><div class="brand">nudge<span style="color:var(--green)">.</span></div><div class="avatar">AM</div></div>
+<section id="home">
+<div class="hello"><h1>Good afternoon, Adnan 👋</h1><p>A few things could use a little nudge.</p></div>
+<div class="stats"><div class="stat"><b id="readyN">2</b><span>Ready now</span></div><div class="stat"><b id="upcomingN">3</b><span>Upcoming</span></div><div class="stat"><b id="doneN">4</b><span>Completed</span></div></div>
+<div class="tabs"><button class="tab active" data-kind="forme">For me</button><button class="tab" data-kind="sent">Sent by me</button></div>
+<div id="cards"></div>
+</section>
+<section id="activity" class="hide"><div class="hello"><h1>Activity</h1><p>What has happened with your nudges.</p></div><div class="panel" style="padding:4px 18px"><div class="activity"><b>Ahmad acknowledged your nudge</b><div class="meta">ApLM registration · 12 min ago</div></div><div class="activity"><b>Farah completed a nudge</b><div class="meta">Parent consent forms · Yesterday</div></div><div class="activity"><b>You were nudged by Sarah</b><div class="meta">ECG survey response · Yesterday</div></div></div></section>
+<section id="profile" class="hide"><div class="hello"><h1>Profile</h1><p>Your frontend demo identity.</p></div><div class="panel profile"><div class="avatar">AM</div><h2>Adnan Mahmud</h2><p class="meta">Staff member · Demo account</p><button class="btn">Notification settings</button></div></section>
+</main>
+<button class="fab" id="newBtn">＋ Nudge someone</button>
+<nav class="nav"><div class="navin"><button class="navb active" data-view="home">⌂<br>Home</button><button class="navb" data-view="home" data-sent="1">↗<br>Sent</button><button class="navb" data-view="activity">◷<br>Activity</button><button class="navb" data-view="profile">○<br>Profile</button></div></nav>
+<div class="modal" id="modal"><form class="sheet" id="form"><div class="row"><h2>Send a Nudge</h2><button type="button" class="btn" id="close">Close</button></div>
+<label>Who are you nudging?</label><select id="person"><option>Ahmad</option><option>Sarah</option><option>Farah</option><option>Hafiz</option><option>ECG Team</option></select>
+<label>What needs to be done?</label><input id="task" required placeholder="e.g. Submit ApLM registration">
+<label>Notes (optional)</label><textarea id="notes" placeholder="Add context from the email or task..."></textarea>
+<div class="grid2"><div><label>Due date</label><input id="due" type="date" required></div><div><label>Nudge date</label><input id="when" type="date" required></div></div>
+<label>Delivery</label><select id="delivery"><option>In-app + WhatsApp</option><option>In-app only</option><option>WhatsApp only</option></select>
+<div class="sheetactions"><button type="button" class="btn" id="cancel">Cancel</button><button class="btn primary">Schedule Nudge</button></div></form></div>
+<script>
+const data=[
+{id:1,kind:'forme',from:'Sarah',to:'You',task:'Complete ECG survey response',due:'20 Sep',status:'ready',note:'Please submit before the department review.'},
+{id:2,kind:'forme',from:'Hafiz',to:'You',task:'Confirm Sec 3 workshop attendance',due:'24 Sep',status:'upcoming',note:''},
+{id:3,kind:'sent',from:'You',to:'Ahmad',task:'Submit ApLM registration',due:'30 Sep',status:'ready',note:'Check final student list before submission.'},
+{id:4,kind:'sent',from:'You',to:'Farah',task:'Collect parent consent forms',due:'25 Sep',status:'acknowledged',note:''},
+{id:5,kind:'sent',from:'You',to:'ECG Team',task:'Update programme reflections',due:'2 Oct',status:'upcoming',note:''}
+];let kind='forme';
+const cards=document.querySelector('#cards');
+function render(){cards.innerHTML=data.filter(x=>x.kind===kind).map(x=>`<article class="card"><div class="row"><span class="pill ${x.status==='ready'?'ready':''}">${x.status==='ready'?'READY TO NUDGE':x.status.toUpperCase()}</span><span class="meta">Due ${x.due}</span></div><h3>${x.task}</h3><div class="meta">${x.kind==='forme'?'From '+x.from:'To '+x.to}</div>${x.note?'<p class="meta">'+x.note+'</p>':''}<div class="actions">${x.kind==='forme'?'<button class="btn primary" onclick="ack(this)">Got it</button><button class="btn" onclick="done(this)">✓ Done</button>':'<button class="btn primary" onclick="wa('+x.id+')">WhatsApp</button><button class="btn" onclick="done(this)">✓ Mark done</button>'}</div></article>`).join('')||'<div class="empty">No nudges here yet.</div>';document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.kind===kind))}
+function ack(b){b.textContent='Acknowledged ✓';b.disabled=true}function done(b){b.closest('.card').style.opacity=.48;b.textContent='Completed ✓';b.disabled=true}
+function wa(id){let n=data.find(x=>x.id===id);let msg=`👋 Just a little nudge!\n\nReminder: *${n.task}*\n📅 Due: ${n.due}\n\nA little nudge so this doesn't slip through the cracks 🙂`;window.open('https://wa.me/?text='+encodeURIComponent(msg),'_blank')}
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{kind=b.dataset.kind;render()});
+const modal=document.querySelector('#modal');newBtn.onclick=()=>modal.classList.add('open');close.onclick=cancel.onclick=()=>modal.classList.remove('open');
+const today=new Date(),iso=d=>d.toISOString().slice(0,10);let d1=new Date(today);d1.setDate(d1.getDate()+7);let d2=new Date(today);d2.setDate(d2.getDate()+5);due.value=iso(d1);when.value=iso(d2);
+form.onsubmit=e=>{e.preventDefault();let dd=new Date(due.value+'T00:00:00');data.unshift({id:Date.now(),kind:'sent',from:'You',to:person.value,task:task.value,due:dd.toLocaleDateString(undefined,{day:'numeric',month:'short'}),status:'upcoming',note:notes.value});kind='sent';modal.classList.remove('open');form.reset();render()};
+document.querySelectorAll('.navb').forEach(b=>b.onclick=()=>{document.querySelectorAll('main.app>section').forEach(s=>s.classList.add('hide'));document.querySelector('#'+b.dataset.view).classList.remove('hide');document.querySelectorAll('.navb').forEach(x=>x.classList.remove('active'));b.classList.add('active');newBtn.classList.toggle('hide',b.dataset.view!=='home');if(b.dataset.sent){kind='sent';render()}});
+render();
+</script></body></html>
