@@ -4,14 +4,14 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Nudge</title>
 <style>
-:root{--ink:#17211b;--muted:#66736b;--bg:#f4f7f4;--card:#fff;--green:#1f7a4d;--light:#e5f4eb;--line:#dce4de;--orange:#fff0dc}
+:root{--ink:#132019;--muted:#6b766f;--bg:#f3f7f4;--card:#fff;--green:#197a4c;--green2:#0f5f3a;--light:#e5f5eb;--line:#dce6df;--orange:#fff0dc}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--ink)}
 .app{max-width:760px;margin:auto;min-height:100vh;padding:24px 18px 92px}.top{display:flex;justify-content:space-between;align-items:center}.brand{font-size:28px;font-weight:850}.avatar{width:44px;height:44px;border-radius:50%;background:var(--green);color:white;display:grid;place-items:center;font-weight:800}
-.hello{margin:28px 0 16px}.hello h1{font-size:25px;margin:0 0 6px}.hello p{margin:0;color:var(--muted)}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat,.card,.panel{background:var(--card);border:1px solid var(--line);border-radius:18px}.stat{padding:15px}.stat b{font-size:25px;display:block}.stat span{font-size:12px;color:var(--muted)}
+.hello{margin:28px 0 18px;padding:22px;border-radius:24px;background:linear-gradient(135deg,#e7f5ec,#f8fbf9);border:1px solid #d8eadf}.hello h1{font-size:27px;margin:0 0 7px;letter-spacing:-.4px}.hello p{margin:0;color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat,.card,.panel{background:var(--card);border:1px solid var(--line);border-radius:18px}.stat{padding:16px;position:relative;overflow:hidden}.stat b{font-size:27px;display:block;letter-spacing:-.5px}.stat span{font-size:12px;color:var(--muted)}.stat:first-child:before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:#e7a13c}
 .tabs{display:flex;gap:8px;margin:22px 0 14px}.tab{border:1px solid var(--line);background:white;border-radius:999px;padding:10px 15px;font-weight:700}.tab.active{background:var(--ink);color:white}
-.card{padding:16px;margin:10px 0}.row{display:flex;justify-content:space-between;gap:12px}.pill{font-size:11px;font-weight:800;background:var(--light);color:var(--green);padding:5px 9px;border-radius:999px;white-space:nowrap}.pill.ready{background:var(--orange);color:#a25a00}.card h3{margin:10px 0 4px;font-size:17px}.meta{font-size:13px;color:var(--muted)}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
-button{font:inherit;cursor:pointer}.btn{border:1px solid var(--line);background:white;padding:10px 12px;border-radius:11px;font-weight:700}.primary{background:var(--green);color:white;border-color:var(--green)}
+.card{padding:18px;margin:11px 0;box-shadow:0 4px 18px rgba(25,70,45,.05);transition:transform .15s ease,border-color .15s ease}.card:hover{transform:translateY(-1px);border-color:#c7d8cd}.row{display:flex;justify-content:space-between;gap:12px}.pill{font-size:11px;font-weight:800;background:var(--light);color:var(--green);padding:5px 9px;border-radius:999px;white-space:nowrap}.pill.ready{background:var(--orange);color:#a25a00}.card h3{margin:10px 0 4px;font-size:17px}.meta{font-size:13px;color:var(--muted)}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+button{font:inherit;cursor:pointer}.btn{border:1px solid var(--line);background:white;padding:10px 12px;border-radius:11px;font-weight:700}.primary{background:var(--green);color:white;border-color:var(--green)}.primary:hover{background:var(--green2)}
 .fab{position:fixed;bottom:76px;left:50%;transform:translateX(-50%);border:0;background:var(--green);color:#fff;border-radius:999px;padding:14px 22px;font-weight:850;box-shadow:0 8px 25px #0003}
 .nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);display:flex;justify-content:center}.navin{width:760px;display:grid;grid-template-columns:repeat(4,1fr)}.nav button{border:0;background:none;padding:13px 4px;color:var(--muted);font-size:12px}.nav button.active{color:var(--green);font-weight:800}
 .modal{position:fixed;inset:0;background:#0008;display:none;align-items:flex-end;justify-content:center;z-index:5}.modal.open{display:flex}.sheet{width:min(760px,100%);max-height:92vh;overflow:auto;background:white;border-radius:24px 24px 0 0;padding:22px}.sheet h2{margin-top:0}
@@ -22,11 +22,11 @@ label{font-size:13px;font-weight:750;display:block;margin:13px 0 6px}input,texta
 </head>
 <body>
 <main class="app">
-<div class="top"><div class="brand">nudge<span style="color:var(--green)">.</span></div><div class="avatar">AM</div></div>
+<div class="top"><div><div class="brand">nudge<span style="color:var(--green)">.</span></div><div class="meta">Remember later. Together.</div></div><div class="avatar">AM</div></div>
 <section id="home">
-<div class="hello"><h1>Good afternoon, Adnan 👋</h1><p>A few things could use a little nudge.</p></div>
+<div class="hello"><div class="meta" style="font-weight:800;color:var(--green);margin-bottom:6px">FRIDAY · YOUR NUDGEBOARD</div><h1>Good afternoon, Adnan 👋</h1><p>You have <b>2 nudges ready</b>. Everything else is on track.</p></div>
 <div class="stats"><div class="stat"><b id="readyN">2</b><span>Ready now</span></div><div class="stat"><b id="upcomingN">3</b><span>Upcoming</span></div><div class="stat"><b id="doneN">4</b><span>Completed</span></div></div>
-<div class="tabs"><button class="tab active" data-kind="forme">For me</button><button class="tab" data-kind="sent">Sent by me</button></div>
+<div class="row" style="margin-top:24px"><div><b style="font-size:18px">Your nudges</b><div class="meta">Keep track without the mental load.</div></div></div><div class="tabs"><button class="tab active" data-kind="forme">↓ For me</button><button class="tab" data-kind="sent">↗ Sent by me</button></div>
 <div id="cards"></div>
 </section>
 <section id="activity" class="hide"><div class="hello"><h1>Activity</h1><p>What has happened with your nudges.</p></div><div class="panel" style="padding:4px 18px"><div class="activity"><b>Ahmad acknowledged your nudge</b><div class="meta">ApLM registration · 12 min ago</div></div><div class="activity"><b>Farah completed a nudge</b><div class="meta">Parent consent forms · Yesterday</div></div><div class="activity"><b>You were nudged by Sarah</b><div class="meta">ECG survey response · Yesterday</div></div></div></section>
@@ -34,13 +34,13 @@ label{font-size:13px;font-weight:750;display:block;margin:13px 0 6px}input,texta
 </main>
 <button class="fab" id="newBtn">＋ Nudge someone</button>
 <nav class="nav"><div class="navin"><button class="navb active" data-view="home">⌂<br>Home</button><button class="navb" data-view="home" data-sent="1">↗<br>Sent</button><button class="navb" data-view="activity">◷<br>Activity</button><button class="navb" data-view="profile">○<br>Profile</button></div></nav>
-<div class="modal" id="modal"><form class="sheet" id="form"><div class="row"><h2>Send a Nudge</h2><button type="button" class="btn" id="close">Close</button></div>
-<label>Who are you nudging?</label><select id="person"><option>Ahmad</option><option>Sarah</option><option>Farah</option><option>Hafiz</option><option>ECG Team</option></select>
+<div class="modal" id="modal"><form class="sheet" id="form"><div class="row"><div><div class="meta" style="font-weight:800;color:var(--green)">NEW NUDGE</div><h2 style="margin:3px 0 0">Who needs a reminder?</h2></div><button type="button" class="btn" id="close">Close</button></div>
+<p class="meta" style="margin:10px 0 18px">Set it now and let Nudge remember it for you.</p><label>Who are you nudging?</label><select id="person"><option>Ahmad</option><option>Sarah</option><option>Farah</option><option>Hafiz</option><option>ECG Team</option></select>
 <label>What needs to be done?</label><input id="task" required placeholder="e.g. Submit ApLM registration">
 <label>Notes (optional)</label><textarea id="notes" placeholder="Add context from the email or task..."></textarea>
 <div class="grid2"><div><label>Due date</label><input id="due" type="date" required></div><div><label>Nudge date</label><input id="when" type="date" required></div></div>
 <label>Delivery</label><select id="delivery"><option>In-app + WhatsApp</option><option>In-app only</option><option>WhatsApp only</option></select>
-<div class="sheetactions"><button type="button" class="btn" id="cancel">Cancel</button><button class="btn primary">Schedule Nudge</button></div></form></div>
+<div style="margin-top:16px;padding:12px;border-radius:12px;background:var(--light);font-size:12px;color:var(--green2)">💡 The recipient will only be bothered when the nudge is due.</div><div class="sheetactions"><button type="button" class="btn" id="cancel">Cancel</button><button class="btn primary">Schedule Nudge →</button></div></form></div>
 <script>
 const data=[
 {id:1,kind:'forme',from:'Sarah',to:'You',task:'Complete ECG survey response',due:'20 Sep',status:'ready',note:'Please submit before the department review.'},
